@@ -1,0 +1,16 @@
+note over browser:
+User types note and clicks submit button,
+which triggers an event handler callback
+end note
+note over browser:
+The callback adds the new data to an
+in-memory array and redraws the page
+end note
+note over browser:
+The note is included in the POST request
+as a JSON blob
+end note
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+server-->browser: {message: "note created"}
+end note
