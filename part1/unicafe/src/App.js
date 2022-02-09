@@ -16,7 +16,10 @@ const Header = ({ text }) => {
 
 const StatisticsLine = ({ text, value }) => {
   return (
-    <div>{text} {value}<br /></div>
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
   )
 }
 
@@ -31,14 +34,16 @@ const Statistics = ( { good, neutral, bad }) => {
 
   if (allResponses() > 0) {
     return (
-      <>
-        <StatisticsLine text="good" value={good}/>
-        <StatisticsLine text="neutral" value={neutral}/>
-        <StatisticsLine text="bad" value={bad}/>
-        <StatisticsLine text="all" value={allResponses()}/>
-        <StatisticsLine text="average" value={averageScore()}/>
-        <StatisticsLine text="positive" value={percentPositive()}/>
-      </>
+      <table>
+        <tbody>
+          <StatisticsLine text="good" value={good}/>
+          <StatisticsLine text="neutral" value={neutral}/>
+          <StatisticsLine text="bad" value={bad}/>
+          <StatisticsLine text="all" value={allResponses()}/>
+          <StatisticsLine text="average" value={averageScore()}/>
+          <StatisticsLine text="positive" value={percentPositive()}/>
+        </tbody>
+      </table>
     )
   }
   return "No feedback given"
