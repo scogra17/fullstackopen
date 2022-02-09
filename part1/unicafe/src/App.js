@@ -14,7 +14,7 @@ const Header = ({ text }) => {
   )
 }
 
-const Value = ({ text, value }) => {
+const StatisticsLine = ({ text, value }) => {
   return (
     <div>{text} {value}<br /></div>
   )
@@ -32,12 +32,12 @@ const Statistics = ( { good, neutral, bad }) => {
   if (allResponses() > 0) {
     return (
       <>
-        <Value text="good" value={good}/>
-        <Value text="neutral" value={neutral}/>
-        <Value text="bad" value={bad}/>
-        <Value text="all" value={allResponses()}/>
-        <Value text="average" value={averageScore()}/>
-        <Value text="positive" value={percentPositive()}/>
+        <StatisticsLine text="good" value={good}/>
+        <StatisticsLine text="neutral" value={neutral}/>
+        <StatisticsLine text="bad" value={bad}/>
+        <StatisticsLine text="all" value={allResponses()}/>
+        <StatisticsLine text="average" value={averageScore()}/>
+        <StatisticsLine text="positive" value={percentPositive()}/>
       </>
     )
   }
