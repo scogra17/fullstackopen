@@ -1,2 +1,2 @@
 # About
-Work for (fullstackopen)[https://fullstackopen.com/en/]
+Work for [fullstackopen](https://fullstackopen.com/en/)
