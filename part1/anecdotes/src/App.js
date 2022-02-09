@@ -8,6 +8,28 @@ const Button = ({ onClick, text }) => {
   )
 }
 
+const Header = ({ text }) => {
+  return (
+    <h1>{text}</h1>
+  )
+}
+
+const Anecdote = ({ anecdote, points }) => {
+  return (
+    <>
+      {anecdote}<br />
+      has {points} votes<br />
+    </>
+  )
+}
+
+const TopAnecdote = ( { anecdote, points} ) => {
+  if (points > 0) {
+    return <Anecdote anecdote={anecdote} points={points}/>
+  }
+  return "No votes yet cast"
+}
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often',
@@ -21,10 +43,27 @@ const App = () => {
 
   const [selected, setSelected] = useState(0)
   const [points, setPoints] = useState(new Array(anecdotes.length).fill(0))
+  const [topIdx, setTopIdx] = useState(0)
 
   const setSelectedToValue = () => {
     let newValue = Math.floor(Math.random() * anecdotes.length)
     setSelected(newValue)
+  }
+
+  const setTopIdxToValue = (newIdx) => {
+    setTopIdx(newIdx)
+  }
+
+  const topAnecdoteIdx = () => {
+    let topVotes = Math.max(...points)
+    // only change current leader if the new leader's
+    // point total exceeds the old leader's
+    if (topVotes > points[topIdx]) {
+      let newTopIdx = points.indexOf(topVotes)
+      setTopIdxToValue(newTopIdx)
+      return newTopIdx
+    }
+    return topIdx
   }
 
   const setPointsToValue = (idx) => {
@@ -37,10 +76,12 @@ const App = () => {
 
   return (
     <div>
-      {anecdotes[selected]}<br />
-      has {points[selected]} votes<br />
+      <Header text="Anecdote of the day"/>
+      <Anecdote anecdote={anecdotes[selected]} points={points[selected]}/>
       <Button text="vote" onClick={setPointsToValue(selected)}/>
       <Button text="next anecdote" onClick={setSelectedToValue}/>
+      <Header text="Anecdote with most votes"/>
+      <TopAnecdote anecdote={anecdotes[topAnecdoteIdx()]} points={points[topAnecdoteIdx()]}/>
     </div>
   )
 }
