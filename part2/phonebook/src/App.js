@@ -8,6 +8,47 @@ const Person = ({ person }) => {
   )
 }
 
+const Persons = ({ persons }) => {
+  return (
+    <>
+      { persons.map(person => <Person key={person.name} person={person}/>) }
+    </>
+  )
+}
+
+const Filter = ({ onChange, value }) => {
+  return (
+    <div>
+      filter shown with <input
+        onChange={onChange}
+        value={value}
+      />
+    </div>
+  )
+}
+
+const PersonForm = (props) => {
+  return (
+    <form>
+        <div>
+          name: <input
+            value={props.valueName}
+            onChange={props.onChangeName}
+          />
+        </div>
+        <div>
+          number: <input
+            value={props.valueNumber}
+            onChange={props.onChangeNumber}
+          />
+        </div>
+        <div>
+          <button onClick={props.addContact} type="submit">add</button>
+        </div>
+      </form>
+  )
+}
+
 const App = () => {
   const [persons, setPersons] = useState([
     { name: 'Arto Hellas', number: '040-123456', id: 1 },
@@ -53,32 +94,17 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>
-        filter shown with <input
-          onChange={handleFilterChange}
-          value={newFilter}
-        />
-      </div>
+      <Filter onChange={handleFilterChange} value={newFilter}/>
       <h2>add a new</h2>
-      <form>
-        <div>
-          name: <input
-            onChange={handleNameChange}
-            value={newName}
-          />
-        </div>
-        <div>
-          number: <input
-            onChange={handleNumberChange}
-            value={newNumber}
-          />
-        </div>
-        <div>
-          <button onClick={addContact} type="submit">add</button>
-        </div>
-      </form>
+      <PersonForm
+        onChangeName={handleNameChange}
+        valueName={newName}
+        onChangeNumber={handleNumberChange}
+        valueNumber={newNumber}
+        addContact={addContact}
+      />
       <h2>Numbers</h2>
-      { personsToDisplay.map(person => <Person key={person.name} person={person}/>) }
+      <Persons persons={personsToDisplay}/>
     </div>
   )
 }
