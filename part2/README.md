@@ -46,3 +46,13 @@ const App = () => {
   console.log('render', notes.length, 'notes')
   // ...
 ```
+
+## Managing API key
+* You need an api-key to use almost every weather service. Do not save the api-key to source control! Nor hardcode the api-key to your source code. Instead use [an environment variable to save the key](https://create-react-app.dev/docs/adding-custom-environment-variables/).
+* e.g. when starting app `$ REACT_APP_API_KEY='t0p53cr3t4p1k3yv4lu3' npm start`
+  * and then access via:
+  ```javascript
+  const api_key = process.env.REACT_APP_API_KEY
+  // variable api_key has now the value set in startup
+  ```
+* Note that if you created the application using npx create-react-app ...and you want to use a different name for your environment variable then the environment variable name must still begin with REACT_APP_. You can also use a .envfile rather than defining it on the command line each time by creating a file entitled '.env' in the root of the project and adding the following.
