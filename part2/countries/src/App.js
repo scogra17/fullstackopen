@@ -9,24 +9,32 @@ const UnorderedList = ({ items }) => {
   )
 }
 
-const Country = ({ country, expand }) => {
-  if (expand) {
-    return (
-      <div>
-        <h2>{country.name.common}</h2>
-        capital {country.capital}<br/>
-        area {country.area}<br/>
-        <h4>languages:</h4>
-        <UnorderedList items={Object.values(country.languages)}/>
-        <img src={country.flags.png} alt="flag"/>
-      </div>
-    )
-  }
-  return (<div>{country.name.common}</div>)
+const DetailedCountry = ({ country }) => {
+  return (
+    <div>
+      <h2>{country.name.common}</h2>
+      capital {country.capital}<br/>
+      area {country.area}<br/>
+      <h4>languages:</h4>
+      <UnorderedList items={Object.values(country.languages)}/>
+      <img src={country.flags.png} alt="flag"/>
+    </div>
+  )
 }
 
-const Countries = ({ countries }) => {
-  console.log(countries)
+const Country = ({ country, onClick }) => {
+  console.log(onClick)
+  return (
+    <div>
+      {country.name.common}
+      <button onClick={onClick} data-country-name={country.name.common}>
+        show
+      </button>
+    </div>
+  )
+}
+
+const Countries = ({ countries, onClick }) => {
   if (countries.length === 0) {
     return (<div>No matches, specify another filter</div>)
   }
@@ -34,11 +42,11 @@ const Countries = ({ countries }) => {
     return (<div>Too many matches, specify another filter</div>)
   }
   if (countries.length === 1) {
-    return (<Country country={countries[0]} expand={true} />)
+    return (<DetailedCountry country={countries[0]} />)
   }
   return (
     <>
-      {countries.map(country => <Country key={country.cca3} country={country} />)}
+      {countries.map(country => <Country key={country.cca3} country={country} onClick={onClick} />)}
     </>
   )
 }
@@ -56,8 +64,11 @@ function App() {
 
   useEffect(hook, [])
 
+  const handleShowCountry = (event) => {
+    setCountryFilter(event.target.getAttribute('data-country-name'))
+  }
+
   const handleCountryFilterChange = (event) => {
-    console.log(event.target.value)
     setCountryFilter(event.target.value)
   }
 
@@ -71,7 +82,7 @@ function App() {
         onChange={handleCountryFilterChange}
         value={countryFilter}
       />
-      <Countries countries={countriesToDisplay()}/>
+      <Countries countries={countriesToDisplay()} onClick={handleShowCountry}/>
     </div>
   )
 }
