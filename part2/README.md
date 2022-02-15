@@ -56,3 +56,22 @@ const App = () => {
   // variable api_key has now the value set in startup
   ```
 * Note that if you created the application using npx create-react-app ...and you want to use a different name for your environment variable then the environment variable name must still begin with REACT_APP_. You can also use a .envfile rather than defining it on the command line each time by creating a file entitled '.env' in the root of the project and adding the following.
+
+## REST
+* We refer to individual data objects, such as the notes in our application, as resources, each of which has a unique address associated with it - its URL.
+* Individual notes stored in the json-server backend can be modified in two different ways by making HTTP requests to the note's unique URL. We can either replace the entire note with an HTTP PUT request, or only change some of the note's properties with an HTTP PATCH request.
+
+## Promises
+* The catch method can be used to define a handler function at the end of a promise chain, which is called once any promise in the chain throws an error and the promise becomes rejected, e.g.:
+
+```javascript
+axios
+  .put(`${baseUrl}/${id}`, newObject)
+  .then(response => response.data)
+  .then(changedNote => {
+    // ...
+  })
+  .catch(error => {
+    console.log('fail')
+  })
+```

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import personsService from './services/persons'
 
 const Person = ({ person }) => {
   return (
@@ -59,11 +59,8 @@ const App = () => {
   ])
 
   const hook = () => {
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        setPersons(response.data)
-      })
+    personsService
+      .getAll()
   }
 
   useEffect(hook, [])
@@ -93,9 +90,13 @@ const App = () => {
         name: newName,
         number: newNumber,
       }
-      setPersons(persons.concat(newPerson))
-      setNewName('')
-      setNewNumber('')
+      personsService
+        .create(newPerson)
+        .then(returnedPerson => {
+          setPersons(persons.concat(newPerson))
+          setNewName('')
+          setNewNumber('')
+        })
     }
   }
 
