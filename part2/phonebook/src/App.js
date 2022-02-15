@@ -76,13 +76,16 @@ const App = () => {
 
   const addContact = (event) => {
     event.preventDefault()
-    if (persons.some(person => person.name === newName)) {
-      alert(`${newName} is already added to your phonebook`)
-    } else {
-      const newPerson = {
-        name: newName,
-        number: newNumber,
+    const newPerson = {
+      name: newName,
+      number: newNumber,
+    }
+    const existingPerson = persons.filter(person => person.name === newName)
+    if (existingPerson) {
+      if (window.confirm(`${newName} is already added to your phonebook, replace the old number with a new one?`)) {
+        updateContact({...newPerson, id: existingPerson[0].id })
       }
+    } else {
       personsService
         .create(newPerson)
         .then(returnedPerson => {
@@ -91,6 +94,16 @@ const App = () => {
           setNewNumber('')
         })
     }
+  }
+
+  const updateContact = (person) => {
+    personsService
+      .update(person.id, person)
+      .then(returnedPerson => {
+        setPersons(persons.map(p => p.id !== person.id ? p : returnedPerson))
+        setNewName('')
+        setNewNumber('')
+      })
   }
 
   const deleteContact = (person) => {
