@@ -75,3 +75,38 @@ axios
     console.log('fail')
   })
 ```
+
+## Styling
+* In React we have to use the className attribute instead of the class attribute.
+* Defining styles inline, e.g.:
+```javascript
+const Footer = () => {
+  const footerStyle = {
+    color: 'green',
+    fontStyle: 'italic',
+    fontSize: 16
+  }
+  return (
+    <div style={footerStyle}>
+      <br />
+      <em>Note app, Department of Computer Science, University of Helsinki 2022</em>
+    </div>
+  )
+}
+
+const App = () => {
+  // ...
+
+  return (
+    <div>
+      <h1>Notes</h1>
+
+      <Notification message={errorMessage} />
+
+      // ...
+
+      <Footer />
+    </div>
+  )
+}
+```

@@ -7,7 +7,7 @@
     },
     {
       "name": "Ken Thompson",
-      "number": "123",
+      "number": "0345",
       "id": 3
     },
     {
@@ -19,11 +19,6 @@
       "name": "Alan Turing",
       "number": "0987",
       "id": 5
-    },
-    {
-      "name": "Claude Shannon",
-      "number": "888",
-      "id": 6
     }
   ]
 }
