@@ -110,3 +110,34 @@ const App = () => {
   )
 }
 ```
+
+## CORS
+* JavaScript code of an application that runs in a browser can only communicate with a server in the same origin
+* We can allow requests from other origins by using Node's [cors middleware](https://github.com/expressjs/cors).
+* [MDN CORS details](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+
+## Deploying with Heroku
+1) Add a file called Procfile to the backend project's root to tell Heroku how to start the application. Content: `web: npm start`
+
+## Build frontend and deploy
+1) `$ npm run build`. If there is error `TypeError: MiniCssExtractPlugin is not a constructor`:
+  a. add to package.json:
+  ```js
+   "resolutions": {
+    "mini-css-extract-plugin": "2.4.5"
+  }
+  ```
+  b. run from root
+  ```
+  $ rm -rf package-lock.json
+  $ rm -rf node_modules
+  $ npm cache clean --force
+  $ npm install
+  ```
+  c. run `$ npm run build`
+2) [OPTION] Serving static files from the backend
+  a. `$ cp -r build ../notes-backend`: copy the production build (the build directory) to the root of the backend repository and configure the backend to show the frontend's main page (the file build/index.html) as its main page.
+  b. add `app.use(express.static('build'))` to index.js to make express show static content, the page index.html and the JavaScript, etc., it fetches, we need a built-in middleware from express called static.
+    * whenever express gets an HTTP GET request it will first check if the build directory contains a file corresponding to the request's address. If a correct file is found, express will return it.
+
+* `$ npm run build` creates a directory called build (which contains the only HTML file of our application, index.html ) which contains the directory static. Minified version of our application's JavaScript code will be generated to the static directory. Even though the application code is in multiple files, all of the JavaScript will be minified into one file. Actually all of the code from all of the application's dependencies will also be minified into this single file.
