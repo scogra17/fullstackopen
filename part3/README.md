@@ -114,3 +114,13 @@ app.use(unknownEndpoint)
   * reference variables with the familiar `process.env.MONGODB_URI`
 * environment variables are available globally
 * set config vars for heroku, e.g. `heroku config:set MONGODB_URI='mongodb+srv://fullstack:<password>@cluster0.o1opl.mongodb.net/noteApp?retryWrites=true&w=majority'` OR via UI
+
+## Linting with eslint 
+1) Install for project: `$ npm install eslint --save-dev`
+2) Initialize eslint: `$npx node_modules/.bin/eslint --init`. The configuration will be saved in `.eslintrc.js`
+3) Lint a specific file: `$ npx eslint index.js`
+
+### Notes
+* Use `.eslintignore` file to stop linting on certain files or directories
+* A myriad of rules can be found [here](https://eslint.org/docs/rules/)
+* A default rule can be disabled by setting its value to 0
