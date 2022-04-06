@@ -25,6 +25,7 @@
 * The router is used for defining "related routes" in a single place and is typically placed in its own module
 
 ## Unit tests with jest
+* set `NODE_ENV` ins package.json to distinguish between the project being run in production vs. development
 * We must specify that the `testingEnvironment` is "node" in `package.json`
 * Jest expects the names of the test files to contain ".test" (<name>.test.js is a common convention)
 * Describe blocks can be used for grouping tests into logical collections. They are also needed when we want to run some shared setup or teardown operations for a group of tests
@@ -61,3 +62,11 @@ notesRouter.delete('/:id', async (request, response) => {
 })
 ```
 
+## Adding user authentication and authorization
+* Traditionally document databases like Mongo do not support join queries; however, starting in version 3.2 Mongo supports "lookup aggregation queries"
+* If we need functionality similar to join queries, we will implement it in our application code by making multiple queries
+* Schema-less databases like Mongo rewquire developers to make far more radical design decisions about data organization at the beginning of a project than relational databases with schemas. On average, relational databases offer a more-or-less suitable way of organizing data for many applications
+* Mongoose accomplishes the join by doing multiple queries, which is different from join queries in relational databases which are transactional, meaning that the state of the database does not change during the time that the query is made. With join queries in Mongoose, nothing can guarantee that the state between the collections being joined is consistent, meaning that if we make a query that joins the user and notes collections, the state of the collections may change during the query.
+
+## Token-based user authentication
+* backend generates and returns a token that identifies user when the browswer makes a successful /api/login request POST. This token is included by the browswer on all subsequent requests
