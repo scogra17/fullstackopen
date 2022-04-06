@@ -33,3 +33,29 @@ store.subscribe(() => {
   * One effect: use `.concat` instaed of `.push` when adding to an array in state since `.concat` creates a new array
 * Reducer state must be composed of immutable objects. If there is a change in the state, the old object is not changed, but it is replaced with a new, changed object
 * Use deep-freeze to ensure the reducer has been correctly defined as an immutable function: `$ npm install --save-dev deep-freeze`
+
+## Uncontrolled form
+* Like in the notes app, the state of form fields is not bound to the state of the app component as was previously done
+  * "Uncontrolled forms have certain limitations, e.g. dynamic error messages or disabling the submit button based on input are not possible)."
+
+## Share state between components
+* Install react-redux library so as to be able to use the hooks-api `$ npm install react-redux`
+* Make the application a child of `Provider` in index.js, e.g.: 
+```js
+import ReactDOM from 'react-dom'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import App from './App'
+import noteReducer from './reducers/noteReducer'
+
+const store = createStore(noteReducer)
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
+```
+* dispatch actions using the `dispatch` function from the `useDispatch` hook, which provides any React component access to the dispatch-functon of the redux-store defined in index.js. This allows all components to make changes to the state of the redux-store
+* components can access the store with the `useSelector` hook of the react-redux library
