@@ -31,6 +31,14 @@ export const createAnecdote = (content) => {
   }
 }
 
+// action creator
+export const vote = (id) => {
+  return {
+    type: 'CAST_VOTE',
+    data: { id }
+  }
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'CAST_VOTE':
