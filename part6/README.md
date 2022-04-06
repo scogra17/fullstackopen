@@ -59,3 +59,9 @@ ReactDOM.render(
 ```
 * dispatch actions using the `dispatch` function from the `useDispatch` hook, which provides any React component access to the dispatch-functon of the redux-store defined in index.js. This allows all components to make changes to the state of the redux-store
 * components can access the store with the `useSelector` hook of the react-redux library
+
+## Combined Reducers
+* Use `combineReducers`!
+
+## Redux toolkit
+* Reduces need for boilerplate. Install with `$ npm install @reduxjs/toolkit`
