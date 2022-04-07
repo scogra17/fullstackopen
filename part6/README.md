@@ -62,6 +62,8 @@ ReactDOM.render(
 
 ## Combined Reducers
 * Use `combineReducers`!
+* Can also be done with Redux toolkit (see below)
 
 ## Redux toolkit
 * Reduces need for boilerplate. Install with `$ npm install @reduxjs/toolkit`
+* Create reducer and related action creators using the `createSlice` function
