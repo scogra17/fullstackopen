@@ -65,7 +65,14 @@ export const vote = (id) => {
   }
 }
 
-const reducer = (state = initialState, action) => {
+export const setAnecdotes = (anecdotes) => {
+  return {
+    type: 'SET_ANECDOTES',
+    data: anecdotes
+  }
+}
+
+const reducer = (state = [], action) => {
   switch (action.type) {
     case 'CAST_VOTE':
       const id = action.data.id
@@ -79,6 +86,8 @@ const reducer = (state = initialState, action) => {
       })
     case 'NEW_ANECDOTE':
       return [...state, action.data]
+    case 'SET_ANECDOTES': 
+      return action.data
     default:
       return state
   }
