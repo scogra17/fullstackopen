@@ -67,3 +67,8 @@ ReactDOM.render(
 ## Redux toolkit
 * Reduces need for boilerplate. Install with `$ npm install @reduxjs/toolkit`
 * Create reducer and related action creators using the `createSlice` function
+
+## Redux Thunk
+* install with `$ npm install redux-thunk`
+* used to implement "action creators" which return a function instead of an object
+* allows for implementation of async action creators, which first wait for the completion of a certain async operation and after that dispatch some action, which changes the store's state
