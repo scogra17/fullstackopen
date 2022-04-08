@@ -1,10 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import noteService from '../services/notes'
 
-const generateId = () => {
-  return Number((Math.random() * 1000000).toFixed(0))
-}
-
 const noteSlice = createSlice({
   name: 'notes',
   initialState: [],

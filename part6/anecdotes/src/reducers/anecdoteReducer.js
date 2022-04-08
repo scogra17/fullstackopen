@@ -75,7 +75,6 @@ const reducer = (state = [], action) => {
     case 'APPEND_ANECDOTE':
       return [...state, action.data]
     case 'REPLACE_ANECDOTE':
-      console.log(action)
       const newID = action.data.id
       return state.map(anecdote => {
         return anecdote.id !== newID ? anecdote : action.data
