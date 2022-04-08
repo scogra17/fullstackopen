@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { vote } from '../reducers/anecdoteReducer'
+import { likeAnecdote } from '../reducers/anecdoteReducer'
 import { notificationChange } from '../reducers/notificationReducer'
 
 const Anecdote = ({ anecdote, handleClick }) => {
@@ -36,7 +36,7 @@ const AnecdoteList = () => {
         key={a.id}
         anecdote={a}
         handleClick={() => 
-          dispatch(vote(a.id)) && dispatch(notificationChange(notification))}
+          dispatch(likeAnecdote(a)) && dispatch(notificationChange(notification))}
         />
       })}
     </div>

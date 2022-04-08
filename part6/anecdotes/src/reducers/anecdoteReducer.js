@@ -49,10 +49,17 @@ export const setAnecdotes = (anecdotes) => {
   }
 }
 
+export const replaceAnecdote = (anecdote) => {
+  return {
+    type: 'REPLACE_ANECDOTE',
+    data: anecdote
+  }
+}
+
 const reducer = (state = [], action) => {
   switch (action.type) {
     case 'CAST_VOTE':
-      const id = action.data.id
+      let id = action.data.id
       const anecdoteToChange = state.find(a => a.id === id)
       const changedAnecdote = {
         ...anecdoteToChange,
@@ -67,6 +74,12 @@ const reducer = (state = [], action) => {
       return action.data
     case 'APPEND_ANECDOTE':
       return [...state, action.data]
+    case 'REPLACE_ANECDOTE':
+      console.log(action)
+      const newID = action.data.id
+      return state.map(anecdote => {
+        return anecdote.id !== newID ? anecdote : action.data
+      })
     default:
       return state
   }
@@ -83,6 +96,17 @@ export const createAnecdote = content => {
   return async dispatch => {
     const newAnecdote = await anecdoteService.createNew(content)
     dispatch(appendAnecdote(newAnecdote.content))
+  }
+}
+
+export const likeAnecdote = content => {
+  return async dispatch => {
+    const updatedContent = {
+      ...content,
+      votes: content.votes + 1
+    }
+    const newAnecdote = await anecdoteService.update(content.id, updatedContent)
+    dispatch(replaceAnecdote(newAnecdote))
   }
 }
 
