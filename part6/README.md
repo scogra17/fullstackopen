@@ -11,6 +11,7 @@
   * When an action changes the state of the store, the views are re-rendered
 
 # Redux
+* [You might not need Redux](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367)
 * Simplified version of Flux, state is still stored in "store"
 * The whole state of the application is stored in one JS object in the store
 * The state of the store is changed with actions, which are objects as well consisting of at least a field indicating the type of action
@@ -72,3 +73,7 @@ ReactDOM.render(
 * install with `$ npm install redux-thunk`
 * used to implement "action creators" which return a function instead of an object
 * allows for implementation of async action creators, which first wait for the completion of a certain async operation and after that dispatch some action, which changes the store's state
+
+## Redux connect (the old way)
+* The connect function accepts a so-called mapStateToProps function as its first parameter. The function can be used for defining the props of the connected component that are based on the state of the Redux store
+* [Tutorial covering connect](https://egghead.io/courses/fundamentals-of-redux-course-from-dan-abramov-bd5cc867)
