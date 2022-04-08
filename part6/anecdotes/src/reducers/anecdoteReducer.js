@@ -27,9 +27,9 @@ import anecdoteService from '../services/anecdotes'
 // })
 
 // action creator
-export const createAnecdote = (content) => {
+export const appendAnecdote = (content) => {
   return {
-    type: 'NEW_ANECDOTE',
+    type: 'APPEND_ANECDOTE',
     data: content
   }
 }
@@ -65,6 +65,8 @@ const reducer = (state = [], action) => {
       return [...state, action.data]
     case 'SET_ANECDOTES': 
       return action.data
+    case 'APPEND_ANECDOTE':
+      return [...state, action.data]
     default:
       return state
   }
@@ -74,6 +76,13 @@ export const initializeAnecdotes = () => {
   return async dispatch => {
     const anecdotes = await anecdoteService.getAll()
     dispatch(setAnecdotes(anecdotes))
+  }
+}
+
+export const createAnecdote = content => {
+  return async dispatch => {
+    const newAnecdote = await anecdoteService.createNew(content)
+    dispatch(appendAnecdote(newAnecdote.content))
   }
 }
 

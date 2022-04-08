@@ -22,7 +22,7 @@ const Anecdote = ({ anecdote, handleClick }) => {
 const AnecdoteList = () => {
   const anecdotes = useSelector(({ anecdotes, filter }) => {
     return anecdotes
-      .filter(n => n.content.toLowerCase().includes(filter.toLowerCase()))
+      .filter(a => a.content.toLowerCase().includes(filter.toLowerCase()))
       .sort((a, b) => b.votes - a.votes)
   })
 
