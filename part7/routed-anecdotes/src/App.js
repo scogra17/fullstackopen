@@ -76,9 +76,9 @@ const CreateNew = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     props.addNew({
-      content: content.value,
-      author: author.value,
-      info: info.value,
+      content: content.form.value,
+      author: author.form.value,
+      info: info.form.value,
       votes: 0
     })
     navigate('/')
@@ -96,16 +96,15 @@ const CreateNew = (props) => {
       <form>
         <div>
           content
-          {/* <input name='content' value={content.value} onChange={content.onChange} /> */}
-          <input {...content} />
+          <input {...content.form} />
         </div>
         <div>
           author
-          <input {...author}/>
+          <input {...author.form}/>
         </div>
         <div>
           url for more info
-          <input {...info} />
+          <input {...info.form} />
         </div>
         <button onClick={handleSubmit}>create</button>
         <button onClick={handleClear}>reset</button>
