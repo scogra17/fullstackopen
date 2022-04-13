@@ -26,3 +26,8 @@
 * Regular JS functions that can use other hooks
 * Building your own hooks lets you extract component logic into reusable functions
 * Naming: must be prefixed with `use...`
+
+### Sources 
+* [Awesome React Hooks Resources](https://github.com/rehooks/awesome-react-hooks)
+* [Easy to understand React Hook recipes by Gabe Ragland](https://usehooks.com/)
+* [Why Do React Hooks Rely on Call Order?](https://overreacted.io/why-do-hooks-rely-on-call-order/)
