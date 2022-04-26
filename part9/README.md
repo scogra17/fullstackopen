@@ -3,6 +3,7 @@
 * [TS playground](https://www.typescriptlang.org/play)
 
 ## Using ts-node
+* install: `$ npm install --save-dev ts-node typescript`
 * After adding `"ts-node:": "ts-node"` to the scripts property of the package.json, it can be used by running `npm run ts-node`. When using ts-node through package.json, all command line arguments need to be prefixed with `--`. E.g. to run `file.js`: `$ npm run ts-node -- file.ts`
 
 ## tsconfig.json
