@@ -2,6 +2,7 @@
 * Notes on Typescript
 * [TS playground](https://www.typescriptlang.org/play)
 * [Interface docs](https://www.typescriptlang.org/docs/handbook/interfaces.html)
+* [Modules docs](https://www.typescriptlang.org/docs/handbook/modules.html)
 
 ## Using ts-node
 * install: `$ npm install --save-dev ts-node typescript`
@@ -13,3 +14,12 @@
 ## typings
 * Since the typings are only used before compilation, the typings are not needed in the production build and they should always be in the devDependencies of the package.json
 * Usually, types for existing packages can be found from the @types organization within npm, and you can add the relevant types to your project by installing an npm package with the name of your package with a @types/ prefix. For example: npm install --save-dev @types/react @types/express @types/lodash @types/jest @types/mongoose and so on and so on.
+
+## Import vs. require
+* Which import statement to use depends on the export method used in the imported package
+* A good rule of thumb is to try importing a module using the import statement first. We will always use this method in the frontend. If import does not work, try a combined method: import ... = require('...').
+
+## Auto reloading
+* Alternative to nodemond for TypeScript is called "ts-node-dev"
+* Recompiles project with every change, meaning restarting the application isn't necessary 
+* Install: `$ npm install --save-dev ts-node-dev`
