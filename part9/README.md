@@ -18,6 +18,7 @@
 ## Import vs. require
 * Which import statement to use depends on the export method used in the imported package
 * A good rule of thumb is to try importing a module using the import statement first. We will always use this method in the frontend. If import does not work, try a combined method: import ... = require('...').
+* In TypeScript, just as in ECMAScript 2015, any file containing a top-level import or export is considered a module. Conversely, a file without any top-level import or export declarations is treated as a script whose contents are available in the global scope (and therefore to modules as well)
 
 ## Auto reloading
 * Alternative to nodemond for TypeScript is called "ts-node-dev"

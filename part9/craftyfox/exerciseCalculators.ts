@@ -27,7 +27,7 @@ interface ExerciseInput {
   totals: Array<number>
 }
 
-const processArguments = (args: Array<String>): ExerciseInput => {
+const parseArguments = (args: Array<String>): ExerciseInput => {
   if (args.length < 4) throw new Error("Not enough arguments")
   for (let i = 2; i < args.length; i++) {
     if (isNaN(Number(args[i]))) {
@@ -41,7 +41,7 @@ const processArguments = (args: Array<String>): ExerciseInput => {
 }
 
 try {
-  const { target, totals } = processArguments(process.argv)
+  const { target, totals } = parseArguments(process.argv)
   console.log(calculateExercises(totals, target));
 } catch (error: unknown) {
   let errorMessage = "Something went wrong."
