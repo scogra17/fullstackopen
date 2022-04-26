@@ -18,8 +18,36 @@ const calculateExercises = (exerciseHours: Array<number>, target: number): Exerc
     rating: 0,
     ratingDescription: "",
     target: target,
-    average: exerciseHours.reduce((a, b) => a + b) / 7
+    average: exerciseHours.reduce((a, b) => a + b) / exerciseHours.length
   }
 }
 
-console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2));
+interface ExerciseInput {
+  target: number,
+  totals: Array<number>
+}
+
+const processArguments = (args: Array<String>): ExerciseInput => {
+  if (args.length < 4) throw new Error("Not enough arguments")
+  for (let i = 2; i < args.length; i++) {
+    if (isNaN(Number(args[i]))) {
+      throw new Error("Input must be numbers")
+    }
+  }
+  return {
+    target: Number(args[2]),
+    totals: args.slice(3,).map(v => Number(v))
+  }
+}
+
+try {
+  const { target, totals } = processArguments(process.argv)
+  console.log(calculateExercises(totals, target));
+} catch (error: unknown) {
+  let errorMessage = "Something went wrong."
+  if (error instanceof Error) {
+    errorMessage += " Error. " + error.message
+  }
+  console.log(errorMessage)
+}
+

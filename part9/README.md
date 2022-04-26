@@ -1,6 +1,7 @@
 # About
 * Notes on Typescript
 * [TS playground](https://www.typescriptlang.org/play)
+* [Interface docs](https://www.typescriptlang.org/docs/handbook/interfaces.html)
 
 ## Using ts-node
 * install: `$ npm install --save-dev ts-node typescript`
