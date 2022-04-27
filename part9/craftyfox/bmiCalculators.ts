@@ -1,18 +1,18 @@
 export const calculateBmi = (heightCm: number, weightKg: number): string => {
-  const heightM = heightCm / 100
-  const bmi: number = weightKg / heightM**2 
+  const heightM = heightCm / 100;
+  const bmi: number = weightKg / heightM**2; 
   
   switch (true) {
     case (bmi < 18.5):
-      return "Underweight"
+      return "Underweight";
     case (bmi < 25):
-      return "Normal (healthy weight)"
+      return "Normal (healthy weight)";
     case (bmi < 30): 
-      return "Overweight"
+      return "Overweight";
     default:
-      return "Obese"
+      return "Obese";
   }
-}
+};
 
 interface BodyInput {
   height: number,
@@ -26,19 +26,19 @@ const parseArguments = (values: Array<string>): BodyInput => {
     return {
       height: Number(values[2]),
       weight: Number(values[3])
-    }
+    };
   } else {
-    throw new Error("Please provide numbers")
+    throw new Error("Please provide numbers");
   }
-}
+};
 
 try {
-  const { height, weight } = parseArguments(process.argv)
-  console.log(calculateBmi(height, weight))
+  const { height, weight } = parseArguments(process.argv);
+  console.log(calculateBmi(height, weight));
 } catch(error: unknown) {
-  let errorMessage = "Something went wrong."
+  let errorMessage = "Something went wrong.";
   if (error instanceof Error) {
-    errorMessage += " Error: " + error.message
+    errorMessage += " Error: " + error.message;
   }
-  console.log(errorMessage)
+  console.log(errorMessage);
 }

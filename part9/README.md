@@ -24,3 +24,10 @@
 * Alternative to nodemond for TypeScript is called "ts-node-dev"
 * Recompiles project with every change, meaning restarting the application isn't necessary 
 * Install: `$ npm install --save-dev ts-node-dev`
+
+## Any
+* Programmers however see the code differently when any is explicitly enforced than when it is implicitly inferred. Implicit any typings are usually considered problematic, since it is quite often due to the coder forgetting to assign types (or being too lazy to do it), and it also means that the full power of TypeScript is not properly exploited
+* **This is why the configuration rule noImplicitAny exists on compiler level, and it is highly recommended to keep it on at all times.**
+
+### ESLINT for TS
+* Install: `$ npm install --save-dev eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser`
